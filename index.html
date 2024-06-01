@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Improving education</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init({
+                publicKey: "C2iH5JRYJpVbYdUPn",
+            });
+        })();
+    </script>
+    <script src="script.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ede8DF;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .header h1 {
+            font-size: 4rem;
+            margin: 0;
+            display: inline;
+            padding: 0 20px;
+            border-radius: 10px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap; 
+            justify-content: center;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .box {
+            background-color: #ede8DF;
+            border: 1px solid #555;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 10px;
+            width: calc(50% - 40px); 
+        }
+
+        .display-bar {
+            background-color: #9370DB;
+            color: #fff;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            width: 100%;
+        }
+
+        .option {
+            cursor: pointer;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .option:hover {
+            background-color: #555;
+        }
+        form div {
+            margin-bottom: 20px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+
+    
+</head>
+
+<body>
+    <div class="header">
+        <h1>Educational Resources</h1>
+    </div>
+
+    <div class="display-bar">
+        <div class="option" onclick="selectOption(1)">RESOURCES</div>
+        <div class="option" onclick="selectOption(2)">TIPS</div>
+        <div class="option" onclick="selectOption(3)">FORUM</div>
+        <div class="option" onclick="selectOption(4)">HELP US IMPROVE</div>
+    </div>
+
+   
+    <div class="container" id="content">
+        <!-- Content will be dynamically generated here -->
+    </div>
+    
+
+    
+
+    <script>
+        function selectOption(option) {
+            var contentDiv = document.getElementById("content");
+            switch (option) {
+                case 1:
+                    contentDiv.innerHTML = "";
+                    generateRes(contentDiv);
+                    break;
+                case 2:
+                    contentDiv.innerHTML = "";
+                    generateTips(contentDiv);
+                    break;
+                case 3:
+                    contentDiv.innerHTML = "";
+                    targets(contentDiv);
+                    break;
+                case 4:
+                    contentDiv.innerHTML = ""; // Limpiar contenido previo si lo hay
+                    var formHTML = `
+                        <form onsubmit="submitFeedback(); return false;">
+                            <h2>HELP US IMPROVE</h2>
+                            <div>
+                                <label for="classInput">Class or area:</label>
+                                <input type="text" id="classInput" name="classInput" required>
+                            </div>
+                            <div>
+                                <label for="resourceInput">Resource:</label>
+                                <input type="text" id="resourceInput" name="resourceInput" required>
+                            </div>
+                            <div>
+                                <label for="feedbackInput">Usage:</label>
+                                <textarea id="feedbackInput" name="feedbackInput" rows="4" required></textarea>
+                            </div>
+                            <button type="submit">Send Feedback</button>
+                        </form>`;
+                    contentDiv.innerHTML = formHTML;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function generateTips(container) {
+            var tips = [
+                { mainIdea: "Set the Stage", text: "Get a good night’s sleep. Stick with an environment that works. Eliminate distractions. Snack on smart food. Listen to calming music (or no music). Practice sports or any hobby for a certain time. Color-Coded Notes can make a difference!" },
+                { mainIdea: "The SQ3R Method", text: "The SQ3R Method is a reading strategy: Survey, Question, Read, Recite, Review. You start by surveying the text, generating questions, actively reading for answers, summarizing what you've learned, and finally reviewing to reinforce understanding." },
+                { mainIdea: "The Feynman Technique", text: "Write the subject/concept you are studying at the top of a sheet of paper. Then, explain it in your own words as if you were teaching someone else. Review what you wrote and identify any areas where you were wrong. Once you have identified them, go back to your notes or reading material and figure out the correct answer. Lastly, if there are any areas in your writing where you used technical terms or complex language, go back and rewrite these sections in simpler terms for someone who doesn’t have the educational background you have." },
+                { mainIdea: "Mind Mapping", text: "If you’re a visual learner, try mind mapping, a technique that allows you to visually organize information in a diagram. First, you write a word in the center of a blank page. From there, you write major ideas and keywords and connect them directly to the central concept. Other related ideas will continue to branch out." },
+                { mainIdea: "The Pomodoro Technique", text: "The Pomodoro Technique is a time management method where you work for 25 minutes, then take a 5-minute break. After four cycles, you take a longer break. It helps maintain focus and productivity by breaking tasks into manageable intervals." },
+                { mainIdea: "Time Blocking Method", text: "Allocate specific blocks of time to different tasks or activities throughout your day. These blocks can vary in length depending on the task's complexity and your personal preferences. During each block, you focus solely on the designated task, minimizing distractions." }
+            ];
+
+            tips.forEach(function (tip) {
+                var box = document.createElement("div");
+                box.classList.add("box");
+                box.innerHTML = "<p><strong>" + tip.mainIdea + "</strong></p><p>" + tip.text + "</p>";
+                container.appendChild(box);
+            });
+        }
+        function generateRes(container) {
+            var tips = [
+                { mainIdea: "MATHEMATICS", text: "Not easy but not impossible! Here we get you the best sites recommendations for learners. KHAN ACADEMY the perfect site for a quick research with no login or weekly reports needed. FreeCodeCamp.org if you want to get deep and take a course class, this is an option." },
+                { mainIdea: "CODING", text: "As a programmer, startung with the basics is obvious but...what about developing critical thinking? openclassrooms.com can help you developing your skills, such as using CMD, Github, different languages or the structures. GeeksforGeeks its anotehr helpful community, you can find for beginner to medium knowledge." },
+                { mainIdea: "LANGUAGE LEARNER", text: "Of course you have listened about Duolingo. Giving in a try and complementing your daily practices is also required if you really want to learn a new language. Drops app can help you gain new vocabulary. At Babel you can get to interact with a community of people around teh world. Youtube channels such as Easy Language may teach you local words." },
+                { mainIdea: "ARCHITECTURE", text: "Reading books might be helpful but having no time is the problem. architecturecourses.org may help you as a guide for beginnersin different areas you want to know about." },
+                { mainIdea: "LITERATURE", text: "Oxford univeristy web page may have the perfect lecture for your needings. Another useful tool is 'Future Learn' with many options in the branch of arts. As a bonus, 'Literature Cambridge' offers live sessions about topics in this area which may be a pretty good option comming form experts." },
+                { mainIdea: "EXTRA SKILLS", text: "We get back at openclassrooms.com, a really helpful page for courses in speaking, team managment, and others. If you know spanish, 'Capacitate para el Empleo' by Carlos Slim is amazing. Edx and coursera may help you, but remember you may organized your tempo and don´t get overwhelmed. " },
+
+            ];
+
+            tips.forEach(function (tip) {
+                var box = document.createElement("div");
+                box.classList.add("box");
+                box.innerHTML = "<p><strong>" + tip.mainIdea + "</strong></p><p>" + tip.text + "</p>";
+                container.appendChild(box);
+            });
+        }
+        function targets(container) {
+            var tips = [
+                { mainIdea: "OBJECTIVES", text: "The objective of the project is to create a comprehensive guide tailored for university students, offering valuable tips and common resources to enhance their academic experience. Through meticulous research and collaboration, the guide aims to address key challenges faced by students, such as time management, study techniques, and accessing support services. By providing practical advice and highlighting useful resources available both on and off-campus, the project seeks to empower students to navigate university life more effectively. Additionally, the guide endeavors to foster a sense of community among students by sharing insights and strategies for success, ultimately promoting academic achievement and personal development throughout their university journey." },
+                { mainIdea: "OUR FUTURE", text: "The program envisions a dynamic and student-centric approach, aiming to foster meaningful interactions and provide personalized assistance to students in specific areas of their studies. By leveraging innovative technology and leveraging the expertise of mentors and educators, the program aspires to create a supportive environment where students can receive tailored guidance and support tailored to their individual needs and learning styles. Through interactive platforms and virtual assistance, students will have access to a range of resources and tools designed to enhance their understanding and mastery of challenging subjects. The program's vision is to empower students to excel academically by offering them personalized assistance, fostering a sense of confidence and competence in their academic pursuits." },
+                 ];
+
+            tips.forEach(function (tip) {
+                var box = document.createElement("div");
+                box.classList.add("box");
+                box.innerHTML = "<p><strong>" + tip.mainIdea + "</strong></p><p>" + tip.text + "</p>";
+                container.appendChild(box);
+            });
+        }
+    </script>
+</body>
+
+</html>
