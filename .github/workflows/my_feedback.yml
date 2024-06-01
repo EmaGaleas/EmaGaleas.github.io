@@ -1,0 +1,30 @@
+name: Lint Javascript 
+run-name: Lint Upload Javascript
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 18
+    - name: Install eslint
+      run: npm install eslint --save-dev
+    - name: Lint
+      run: npx eslint script.js --no-config-lookup
+
+
+# Path: .github/workflows/my_feedback.yml
+  deploy:
+    needs:
+      - lint
+    runs-on: ubuntu-latest
+    steps: 
+    - uses: actions/checkout@v4
+    - name: Deploy educational content
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.eduStuff }}
+        publish_dir: ./dist
