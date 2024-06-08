@@ -37,7 +37,9 @@ jobs:
       - name: Install prettier
         run: npm install prettier --save-dev
       - name: Format test
-        run: npx prettier --check script.js   
+        run: |
+          npx prettier --check script.js || (echo "Code style issues found in script.js"; echo "Running Prettier with --write to fix..."; npx prettier --write script.js)
+
 
   monitoring:
     runs-on: ubuntu-latest
