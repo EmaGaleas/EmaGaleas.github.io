@@ -65,6 +65,6 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run dependency audit
-        uses: github/codeql-action/analyze@v1
+        uses: github/codeql-action/analyze@v2
         with:
           args: --format=json        
