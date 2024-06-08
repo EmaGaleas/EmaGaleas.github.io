@@ -67,7 +67,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v1
+        uses: github/codeql-action/init@v2
       - name: Run dependency audit
         uses: github/codeql-action/analyze@v2
         with:
