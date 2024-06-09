@@ -1,5 +1,5 @@
 name: Lint Javascript 
-run-name: Lint Upload Javascript
+run-name: Lint Upload Javascript 🚀
 on: [push, pull_request]
 jobs:
   lint:
@@ -12,7 +12,7 @@ jobs:
     - name: Install eslint
       run: |
         npm install eslint --save-dev
-        echo "ESLint installed successfully 🚀"
+        echo "ESLint installed successfully 💪"
     - name: Lint
       run: |
         npx eslint script.js --no-config-lookup
@@ -23,12 +23,17 @@ jobs:
       - lint
     runs-on: ubuntu-latest
     steps: 
-    - uses: actions/checkout@v4
-    - name: Deploy educational content
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.eduStuff }}
-        publish_dir: ./dist
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Deploy educational content
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.eduStuff }}
+          publish_dir: ./dist
+      - name: Deployment completed 😎
+        run: echo "Educational content deployed successfully 🧑‍💻"
+
   format_test:
     runs-on: ubuntu-latest
     steps:
@@ -38,7 +43,7 @@ jobs:
         run: npm install prettier --save-dev
       - name: Format test
         run: |
-          npx prettier --check script.js || (echo "Code style issues found in script.js"; echo "Running Prettier with --write to fix..."; npx prettier --write script.js)
+          npx prettier --check script.js || (echo "Code style issues found in script.js"; echo "Running Prettier with --write to fix...👽 "; npx prettier --write script.js)
   monitoring:
     runs-on: ubuntu-latest
     needs:
@@ -46,6 +51,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        
       - name: Run monitoring script
         run: |
-          bash monitor.bash   
+          bash monitor.bash
+      - name: Monitoring completed 🦥
+        run: echo "Monitoring script executed successfully 😁"
+  
