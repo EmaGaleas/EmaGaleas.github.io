@@ -1,5 +1,5 @@
 name: Lint Javascript 
-run-name: Lint Upload Javascript
+run-name: Lint Upload Javascript echo "Working hard...🏋️‍♀️💻"
 on: [push, pull_request]
 
 jobs:
@@ -11,12 +11,21 @@ jobs:
       with:
         node-version: 18
     - name: Install eslint
-      run: npm install eslint --save-dev
+      run: npm install eslint --save-dev echo "Running eslint to check for linting issues...🧹"
     - name: Lint
-      run: npx eslint script.js --no-config-lookup
+      run: npx eslint script.js --no-config-lookup echo "Linting complete🚀"
 
+  format_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install prettier
+        run: npm install prettier --save-dev echo "Running--check to check for code style issues...🫥"
+      - name: Format test
+        run: |
+          npx prettier --check script.js || (echo "Code style issues found in script.js"; echo "Running Prettier with --write to fix..."; npx prettier --write script.js) echp "Code style issues fixed😎🎉"
 
-# Path: .github/workflows/my_feedback.yml
   deploy:
     needs:
       - lint
@@ -28,17 +37,7 @@ jobs:
       with:
         github_token: ${{ secrets.eduStuff }}
         publish_dir: ./dist
-
-  format_test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Install prettier
-        run: npm install prettier --save-dev
-      - name: Format test
-        run: |
-          npx prettier --check script.js || (echo "Code style issues found in script.js"; echo "Running Prettier with --write to fix..."; npx prettier --write script.js)
+        run: echo "Deployed educational content succesful🧑‍💻💪"
 
 
   monitoring:
@@ -50,6 +49,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Run monitoring script
         run: |
-          bash monitor.bash   
+          bash monitor.bash  echo "Monitoring script ran successfully👽"
+
 
 
